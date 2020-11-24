@@ -78,9 +78,11 @@ class HeadlessPreviewMixin:
         return (
             self.get_client_root_url()
             + "?"
-            + urllib.parse.urlencode(
-                {"content_type": self.get_content_type_str(), "token": token}
-            )
+            + urllib.parse.urlencode({
+                "content_type": self.get_content_type_str(),
+                "token": token,
+                "hostname": self.get_site().hostname,
+            })
         )
 
     def dummy_request(self, original_request=None, **meta):
